@@ -21,8 +21,9 @@ A native Windows desktop CRUD application for managing contacts. Built with **C#
 
 ## Requirements
 
-- Windows 10 or later
-- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- Windows 10 or later (Server 2022 works)
+- No separate .NET install needed when using the **GitHub Actions artifact** (self-contained build)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) only if building from source
 
 ## Run the App
 
@@ -34,14 +35,14 @@ dotnet run
 ## Build a Release
 
 ```bash
-dotnet publish -c Release -r win-x64 --self-contained false
+dotnet publish -c Release -r win-x64 --self-contained true
 ```
 
 The executable will be in `bin/Release/net10.0-windows/win-x64/publish/`.
 
 ## Deploy via GitHub Actions (Windows VM)
 
-Every push to `main` builds a Windows x64 package automatically.
+Every push to `main` builds a **self-contained** Windows x64 package (includes the .NET Desktop Runtime — no install required on the VM).
 
 1. Open the repo on GitHub → **Actions** → latest **Build Windows App** run
 2. Download the **ContactManager-win-x64** artifact (zip)
